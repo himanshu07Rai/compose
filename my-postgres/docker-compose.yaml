@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  postgres_db:
+    image: postgres:latest
+    container_name: postgresCont
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    networks:
+      - my-network
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadminCont
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "raihimanshu22345@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "qazplm@098"
+    ports:
+      - "8888:80"
+    volumes:
+      - ./pgadmin-data:/var/lib/pgadmin
+    networks:
+      - my-network
+
+volumes:
+  postgres-data:
+  pgadmin-data:
+
+networks:
+  my-network:
+    driver: bridge
