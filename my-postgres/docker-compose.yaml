@@ -15,23 +15,9 @@ services:
       - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
     networks:
       - my-network
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadminCont
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "raihimanshu22345@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "qazplm@098"
-    ports:
-      - "8888:80"
-    volumes:
-      - ./pgadmin-data:/var/lib/pgadmin
-    networks:
-      - my-network
 
 volumes:
   postgres-data:
-  pgadmin-data:
 
 networks:
   my-network:
