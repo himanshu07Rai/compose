@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis/redis-stack:latest  # use the latest redis-stack image
+    container_name: redis-stack
+    ports:
+      - "6379:6379"                   # Redis default port
+      - "8001:8001"                   # Redis Stack browser (optional)
+    volumes:
+      - redis_data:/data              # Mount persistent volume to save data
+    environment:
+      - REDIS_PASSWORD=your_password  # Set a password for Redis (optional)
+
+volumes:
+  redis_data:
+    driver: local                     # Local driver for persistent storage
