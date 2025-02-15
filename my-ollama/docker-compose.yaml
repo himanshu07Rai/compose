@@ -8,8 +8,9 @@ services:
       - "11434:11434"
     restart: unless-stopped
     volumes:
-      - ollama:/root/.ollama
+      # - ollama:/root/.ollama
+      - /mnt/d/docker-volumes/ollama:/root/.ollama  # WSL2 path format
 
-
-volumes:
-  ollama:
+# volumes:
+#   ollama:
+# volumes section removed since we're using a bind mount and not named volumes
